@@ -1,0 +1,567 @@
+Feature Group,Feature/Area,Sub-feature
+Backend - Content Management,Article (Blog),Article CRUD
+Backend - Content Management,Article (Blog),Article Categories
+Backend - Content Management,Article (Blog),Article Authors
+Backend - Content Management,Article (Blog),Article SEO
+Backend - Content Management,Article (Blog),Article Dynamic Zones
+Backend - Content Management,Article (Blog),Article Localization
+Backend - Content Management,Article (Blog),Article Draft & Publish
+Backend - Content Management,Page (Dynamic Pages),Page CRUD
+Backend - Content Management,Page (Dynamic Pages),Page SEO
+Backend - Content Management,Page (Dynamic Pages),Page Slug Management
+Backend - Content Management,Page (Dynamic Pages),Page Dynamic Zones
+Backend - Content Management,Page (Dynamic Pages),Page Localization
+Backend - Content Management,Page (Dynamic Pages),Page Draft & Publish
+Backend - Content Management,Product,Product CRUD
+Backend - Content Management,Product,Product Categories
+Backend - Content Management,Product,Product Plans (Pricing)
+Backend - Content Management,Product,Product Perks
+Backend - Content Management,Product,Product Featured Flag
+Backend - Content Management,Product,Product SEO
+Backend - Content Management,Product,Product Media
+Backend - Content Management,Product,Product Dynamic Zones
+Backend - Content Management,Product,Product Localization
+Backend - Content Management,Product,Product Draft & Publish
+Backend - Content Management,FAQ,FAQ CRUD
+Backend - Content Management,FAQ,FAQ Localization
+Backend - Content Management,FAQ,FAQ Structured Data Support
+Backend - Content Management,Documentation (Doc),Doc CRUD
+Backend - Content Management,Documentation (Doc),Doc SEO
+Backend - Content Management,Documentation (Doc),Doc Dynamic Zones
+Backend - Content Management,Documentation (Doc),Doc Localization
+Backend - Content Management,Documentation (Doc),Doc Draft & Publish
+Backend - Content Management,Category,Category CRUD
+Backend - Content Management,Category,Category Relations
+Backend - Content Management,Category,Category Localization
+Backend - Content Management,Testimonial,Testimonial CRUD
+Backend - Content Management,Testimonial,Testimonial User Component
+Backend - Content Management,Testimonial,Testimonial Localization
+Backend - Content Management,Testimonial,Testimonial Draft & Publish
+Backend - Content Management,Plan (Pricing),Plan CRUD
+Backend - Content Management,Plan (Pricing),Plan Product Relation
+Backend - Content Management,Plan (Pricing),Plan Perks
+Backend - Content Management,Plan (Pricing),Plan Featured Flag
+Backend - Content Management,Plan (Pricing),Plan CTA Component
+Backend - Content Management,Contact Card,Contact Card CRUD
+Backend - Content Management,Contact Card,Contact Card Contact Methods
+Backend - Content Management,Contact Card,Contact Card CSV Export
+Backend - Content Management,Contact Card,Contact Card Avatar
+Backend - Content Management,Contact Card,Contact Card Ordering
+Backend - Content Management,Contact Card,Contact Card Localization
+Backend - Content Management,Contact Card,Contact Card Draft & Publish
+Backend - User Interaction,Newsletter,Newsletter Subscription
+Backend - User Interaction,Newsletter,Newsletter CRUD
+Backend - User Interaction,Contact,Contact Form Submission
+Backend - User Interaction,Contact,Contact Message Status
+Backend - User Interaction,Contact,Contact IP Address Tracking
+Backend - User Interaction,Contact,Contact Submitted At Timestamp
+Backend - User Interaction,Contact,Contact Localization
+Backend - User Interaction,Contact,Contact Draft & Publish
+Backend - Site Configuration,Global,Global SEO Settings
+Backend - Site Configuration,Global,Global Navbar Configuration
+Backend - Site Configuration,Global,Global Footer Configuration
+Backend - Site Configuration,Global,Global Localization
+Backend - Site Configuration,Global,Global Draft & Publish
+Backend - Site Configuration,Global Translation,Translation Key-Value Pairs
+Backend - Site Configuration,Global Translation,Translation Localization
+Backend - Site Configuration,Logo,Logo Management
+Backend - Site Configuration,Logo,Logo Localization
+Backend - Site Configuration,Redirection,URL Redirection Management
+Backend - Site Configuration,Redirection,Redirection Localization
+Backend - Site Configuration,Blog Page,Blog Page Configuration
+Backend - Site Configuration,Blog Page,Blog Page SEO
+Backend - Site Configuration,Blog Page,Blog Page Dynamic Zones
+Backend - Site Configuration,Blog Page,Blog Page Localization
+Backend - Site Configuration,Product Page,Product Page Configuration
+Backend - Site Configuration,Product Page,Product Page SEO
+Backend - Site Configuration,Product Page,Product Page Dynamic Zones
+Backend - Site Configuration,Product Page,Product Page Localization
+Backend - Strapi Plugins,i18n (Internationalization),Multi-language Support
+Backend - Strapi Plugins,i18n (Internationalization),Locale Management
+Backend - Strapi Plugins,i18n (Internationalization),Content Localization
+Backend - Strapi Plugins,SEO Plugin,SEO Component Integration
+Backend - Strapi Plugins,SEO Plugin,Meta Tags Management
+Backend - Strapi Plugins,SEO Plugin,OpenGraph Support
+Backend - Strapi Plugins,SEO Plugin,Structured Data Support
+Backend - Strapi Plugins,Users Permissions,User Authentication
+Backend - Strapi Plugins,Users Permissions,Role-based Access Control
+Backend - Strapi Plugins,Users Permissions,Permission Management
+Backend - Strapi Plugins,Content Releases,Content Release Management
+Backend - Strapi Plugins,Content Releases,Content Release Actions
+Backend - Strapi Plugins,Review Workflows,Workflow Management
+Backend - Strapi Plugins,Review Workflows,Workflow Stages
+Backend - Strapi Plugins,Upload (Media Library),Media File Upload
+Backend - Strapi Plugins,Upload (Media Library),Media Folder Organization
+Backend - Strapi Plugins,Upload (Media Library),Media Type Support
+Backend - Shared Components,SEO Component,Meta Title
+Backend - Shared Components,SEO Component,Meta Description
+Backend - Shared Components,SEO Component,Meta Image
+Backend - Shared Components,SEO Component,Keywords
+Backend - Shared Components,SEO Component,Meta Robots
+Backend - Shared Components,SEO Component,Structured Data (JSON)
+Backend - Shared Components,SEO Component,Meta Viewport
+Backend - Shared Components,SEO Component,Canonical URL
+Backend - Shared Components,SEO Component,OpenGraph Title
+Backend - Shared Components,SEO Component,OpenGraph Description
+Backend - Shared Components,SEO Component,OpenGraph Image
+Backend - Shared Components,Contact Method Component,Contact Type
+Backend - Shared Components,Contact Method Component,Contact Value
+Backend - Shared Components,Contact Method Component,Contact Icon
+Backend - Shared Components,Perks Component,Perk Icon
+Backend - Shared Components,Perks Component,Perk Text
+Backend - Shared Components,Steps Component,Step Number
+Backend - Shared Components,Steps Component,Step Title
+Backend - Shared Components,Steps Component,Step Description
+Backend - Shared Components,Section Component,Section Title
+Backend - Shared Components,Section Component,Section Content
+Backend - Shared Components,User Component,User Name
+Backend - Shared Components,User Component,User Avatar
+Backend - Shared Components,User Component,User Role
+Backend - Shared Components,Social Media Icon Links Component,Social Media Platform
+Backend - Shared Components,Social Media Icon Links Component,Social Media URL
+Backend - Shared Components,Social Media Icon Links Component,Social Media Icon
+Backend - Shared Components,Link Component,Link URL
+Backend - Shared Components,Link Component,Link Text
+Backend - Shared Components,Link Component,Link Target
+Backend - Shared Components,Launches Component,Launch Date
+Backend - Shared Components,Launches Component,Launch Title
+Backend - Shared Components,Launches Component,Launch Description
+Backend - Shared Components,Form Component,Form Fields
+Backend - Shared Components,Form Component,Form Actions
+Backend - Shared Components,Button Component,Button Text
+Backend - Shared Components,Button Component,Button URL
+Backend - Shared Components,Button Component,Button Style
+Backend - Dynamic Zone Components,Hero,Hero Heading
+Backend - Dynamic Zone Components,Hero,Hero Sub-heading
+Backend - Dynamic Zone Components,Hero,Hero Background Image
+Backend - Dynamic Zone Components,Hero,Hero CTAs
+Backend - Dynamic Zone Components,Features,Feature Cards
+Backend - Dynamic Zone Components,Features,Feature Icons
+Backend - Dynamic Zone Components,Features,Feature Titles
+Backend - Dynamic Zone Components,Features,Feature Descriptions
+Backend - Dynamic Zone Components,Testimonials,Testimonial Slider
+Backend - Dynamic Zone Components,Testimonials,Testimonial Cards
+Backend - Dynamic Zone Components,Testimonials,Testimonial User Info
+Backend - Dynamic Zone Components,How It Works,How It Works Cards
+Backend - Dynamic Zone Components,How It Works,How It Works Steps
+Backend - Dynamic Zone Components,Brands,Brand Logos
+Backend - Dynamic Zone Components,Brands,Brand Links
+Backend - Dynamic Zone Components,Pricing,Pricing Plans
+Backend - Dynamic Zone Components,Pricing,Pricing Features
+Backend - Dynamic Zone Components,Pricing,Pricing CTAs
+Backend - Dynamic Zone Components,Launches,Launch Timeline
+Backend - Dynamic Zone Components,Launches,Launch Events
+Backend - Dynamic Zone Components,CTA (Call To Action),CTA Text
+Backend - Dynamic Zone Components,CTA (Call To Action),CTA Button
+Backend - Dynamic Zone Components,CTA (Call To Action),CTA Link
+Backend - Dynamic Zone Components,Form Next To Section,Form Fields
+Backend - Dynamic Zone Components,Form Next To Section,Section Content
+Backend - Dynamic Zone Components,Form Next To Section,Contact Items
+Backend - Dynamic Zone Components,FAQ,FAQ Questions
+Backend - Dynamic Zone Components,FAQ,FAQ Answers
+Backend - Dynamic Zone Components,Solutions,Solution Cards
+Backend - Dynamic Zone Components,Solutions,Solution Descriptions
+Backend - Dynamic Zone Components,About,About Content
+Backend - Dynamic Zone Components,About,About Images
+Backend - Dynamic Zone Components,Latest Section,Latest Items
+Backend - Dynamic Zone Components,Latest Section,Latest Links
+Backend - Dynamic Zone Components,Featured Product,Featured Product Display
+Backend - Dynamic Zone Components,Featured Product,Featured Product Info
+Backend - Dynamic Zone Components,Related Articles,Related Article Cards
+Backend - Dynamic Zone Components,Related Articles,Related Article Links
+Backend - Dynamic Zone Components,Related Products,Related Product Cards
+Backend - Dynamic Zone Components,Related Products,Related Product Links
+Frontend - Content & Pages,Homepage,Homepage Hero Section
+Frontend - Content & Pages,Homepage,Homepage Features Section
+Frontend - Content & Pages,Homepage,Homepage Testimonials Section
+Frontend - Content & Pages,Homepage,Homepage Solutions Section
+Frontend - Content & Pages,Homepage,Homepage Pricing Section
+Frontend - Content & Pages,Homepage,Homepage Services Section
+Frontend - Content & Pages,Homepage,Homepage About Section
+Frontend - Content & Pages,Homepage,Homepage Blogs Section
+Frontend - Content & Pages,Homepage,Homepage Process Section
+Frontend - Content & Pages,Homepage,Homepage Dynamic Content
+Frontend - Content & Pages,About Page,About Page Content
+Frontend - Content & Pages,About Page,About Page Dynamic Zones
+Frontend - Content & Pages,About Page,About Page SEO
+Frontend - Content & Pages,Blog,Blog Listing Page
+Frontend - Content & Pages,Blog,Blog Post Page
+Frontend - Content & Pages,Blog,Blog Categories
+Frontend - Content & Pages,Blog,Blog Authors
+Frontend - Content & Pages,Blog,Blog Related Articles
+Frontend - Content & Pages,Blog,Blog Comments (Structure)
+Frontend - Content & Pages,Blog,Blog SEO
+Frontend - Content & Pages,Blog,Blog Localization
+Frontend - Content & Pages,Products,Products Listing Page
+Frontend - Content & Pages,Products,Product Detail Page
+Frontend - Content & Pages,Products,Product Categories
+Frontend - Content & Pages,Products,Product Plans (Pricing)
+Frontend - Content & Pages,Products,Product Perks
+Frontend - Content & Pages,Products,Product Featured Display
+Frontend - Content & Pages,Products,Product Related Products
+Frontend - Content & Pages,Products,Product SEO
+Frontend - Content & Pages,Products,Product Localization
+Frontend - Content & Pages,Contact Page,Contact Form
+Frontend - Content & Pages,Contact Page,Contact Cards Display
+Frontend - Content & Pages,Contact Page,Contact Card QR Codes (vCard)
+Frontend - Content & Pages,Contact Page,Contact Card CSV Download
+Frontend - Content & Pages,Contact Page,Contact Card Social Media Links
+Frontend - Content & Pages,Contact Page,Contact Page Dynamic Zones
+Frontend - Content & Pages,Contact Page,Contact Page SEO
+Frontend - Content & Pages,FAQ Page,FAQ Listing
+Frontend - Content & Pages,FAQ Page,FAQ Accordion
+Frontend - Content & Pages,FAQ Page,FAQ Structured Data (JSON-LD)
+Frontend - Content & Pages,FAQ Page,FAQ Localization
+Frontend - Content & Pages,FAQ Page,FAQ SEO
+Frontend - Content & Pages,Documentation (Doc),Doc Listing Page
+Frontend - Content & Pages,Documentation (Doc),Doc Detail Page
+Frontend - Content & Pages,Documentation (Doc),Doc Dynamic Zones
+Frontend - Content & Pages,Documentation (Doc),Doc SEO
+Frontend - Content & Pages,Documentation (Doc),Doc Localization
+Frontend - Content & Pages,Dynamic Pages (Slug-based),Dynamic Page Routing
+Frontend - Content & Pages,Dynamic Pages (Slug-based),Dynamic Page Content
+Frontend - Content & Pages,Dynamic Pages (Slug-based),Dynamic Page Dynamic Zones
+Frontend - Content & Pages,Dynamic Pages (Slug-based),Dynamic Page SEO
+Frontend - Content & Pages,Dynamic Pages (Slug-based),Dynamic Page Localization
+Frontend - User & Interaction,Newsletter Subscription,Newsletter Form
+Frontend - User & Interaction,Newsletter Subscription,Newsletter API Integration
+Frontend - User & Interaction,Newsletter Subscription,Newsletter Success/Error Messages
+Frontend - User & Interaction,Newsletter Subscription,Newsletter Localization
+Frontend - User & Interaction,Contact Form,Contact Form Fields
+Frontend - User & Interaction,Contact Form,Contact Form Validation
+Frontend - User & Interaction,Contact Form,Contact Form Submission
+Frontend - User & Interaction,Contact Form,Contact Form API Integration
+Frontend - User & Interaction,Contact Form,Contact Form Success/Error Messages
+Frontend - User & Interaction,Contact Form,Contact Form Bot Detection
+Frontend - User & Interaction,Contact Form,Contact Form Localization
+Frontend - User & Interaction,Cart Context (Shopping Cart),Cart State Management
+Frontend - User & Interaction,Cart Context (Shopping Cart),Cart Add/Remove Items
+Frontend - User & Interaction,Cart Context (Shopping Cart),Cart Total Calculation
+Frontend - SEO & Analytics,SEO Meta Tags,Dynamic Meta Title
+Frontend - SEO & Analytics,SEO Meta Tags,Dynamic Meta Description
+Frontend - SEO & Analytics,SEO Meta Tags,Dynamic Meta Image
+Frontend - SEO & Analytics,SEO Meta Tags,Meta Keywords
+Frontend - SEO & Analytics,SEO Meta Tags,Meta Robots
+Frontend - SEO & Analytics,SEO Meta Tags,Canonical URL
+Frontend - SEO & Analytics,SEO Meta Tags,Meta Viewport
+Frontend - SEO & Analytics,Dynamic Sitemap,XML Sitemap Generation
+Frontend - SEO & Analytics,Dynamic Sitemap,Multi-language Sitemap
+Frontend - SEO & Analytics,Dynamic Sitemap,Sitemap Index
+Frontend - SEO & Analytics,Dynamic Sitemap,AI Sitemap
+Frontend - SEO & Analytics,Dynamic Sitemap,Sitemap Auto-refresh
+Frontend - SEO & Analytics,Dynamic Sitemap,Sitemap Content API
+Frontend - SEO & Analytics,Google Analytics 4,GA4 Integration
+Frontend - SEO & Analytics,Google Analytics 4,GA4 Page View Tracking
+Frontend - SEO & Analytics,Google Analytics 4,GA4 Event Tracking
+Frontend - SEO & Analytics,Google Analytics 4,GA4 Cookie Consent
+Frontend - SEO & Analytics,Structured Data,OpenGraph Tags
+Frontend - SEO & Analytics,Structured Data,Twitter Card Tags
+Frontend - SEO & Analytics,Structured Data,JSON-LD (FAQ/Blog/Product/Org)
+Frontend - SEO & Analytics,QR Code Generation,QR Code for Contact Cards (vCard)
+Frontend - SEO & Analytics,QR Code Generation,QR Code Display
+Frontend - SEO & Analytics,QR Code Generation,QR Code Download
+Frontend - SEO & Analytics,QR Code Generation,QR Code Print Option
+Frontend - SEO & Analytics,Robots.txt,Robots.txt Generation
+Frontend - SEO & Analytics,Robots.txt,Robots.txt Rules
+Frontend - Admin System,Authentication,Admin Login
+Frontend - Admin System,Authentication,Admin Logout
+Frontend - Admin System,Authentication,NextAuth Integration
+Frontend - Admin System,Authentication,Session Management
+Frontend - Admin System,Authentication,Auth Guard
+Frontend - Admin System,Authentication,Role-based Access Control
+Frontend - Admin System,Dashboard,Admin Dashboard
+Frontend - Admin System,Dashboard,Quick Stats
+Frontend - Admin System,Dashboard,Overview Cards
+Frontend - Admin System,Dashboard,Navigation Menu
+Frontend - Admin System,User Management,Admin Users List
+Frontend - Admin System,User Management,Admin User CRUD
+Frontend - Admin System,User Management,Admin User Roles
+Frontend - Admin System,User Management,Admin User Permissions
+Frontend - Admin System,Sitemap Viewer,Sitemap XML Preview
+Frontend - Admin System,Sitemap Viewer,Sitemap Content View
+Frontend - Admin System,Sitemap Viewer,Sitemap Verification
+Frontend - Admin System,Sitemap Viewer,Sitemap Management
+Frontend - Admin System,Environment Checker,Environment Variables Display
+Frontend - Admin System,Environment Checker,Environment Variables Validation
+Frontend - Admin System,Environment Checker,Environment Variables Status
+Frontend - Admin System,Environment Checker,Environment Variables Recommendations
+Frontend - Admin System,Environment Checker,Server Info Display
+Frontend - Admin System,Cache Control,Cache Management
+Frontend - Admin System,Cache Control,Cache Clearing
+Frontend - Admin System,Cache Control,Cache Testing
+Frontend - Admin System,Cache Control,Cache Status
+Frontend - Admin System,Cache Test,Cache Test Tools
+Frontend - Admin System,Cache Test,Cache Performance Testing
+Frontend - Appearance & UX,Responsive Design,Mobile-first Design
+Frontend - Appearance & UX,Responsive Design,Tablet Optimization
+Frontend - Appearance & UX,Responsive Design,Desktop Optimization
+Frontend - Appearance & UX,Responsive Design,Breakpoint Management
+Frontend - Appearance & UX,Custom 404 Page,404 Error Page
+Frontend - Appearance & UX,Custom 404 Page,404 Error Message
+Frontend - Appearance & UX,Custom 404 Page,404 Navigation
+Frontend - Appearance & UX,Optimized Image Handling,Next.js Image Optimization
+Frontend - Appearance & UX,Optimized Image Handling,Image Lazy Loading
+Frontend - Appearance & UX,Optimized Image Handling,Image CDN Support
+Frontend - Appearance & UX,Optimized Image Handling,WebP Format Support
+Frontend - Appearance & UX,Optimized Image Handling,Image Responsive Sizes
+Frontend - Appearance & UX,Language Switcher (i18n),Language Selection
+Frontend - Appearance & UX,Language Switcher (i18n),Language Cookie Management
+Frontend - Appearance & UX,Language Switcher (i18n),Language Context
+Frontend - Appearance & UX,Language Switcher (i18n),RTL Support
+Frontend - Appearance & UX,Language Switcher (i18n),Locale Routing
+Frontend - Appearance & UX,Language Switcher (i18n),Localized Slugs
+Frontend - Appearance & UX,Scroll-to-Top,Scroll-to-Top Button
+Frontend - Appearance & UX,Scroll-to-Top,Scroll-to-Top Animation
+Frontend - Appearance & UX,Smooth Navigation,Smooth Scroll
+Frontend - Appearance & UX,Smooth Navigation,Page Transitions
+Frontend - Appearance & UX,Smooth Navigation,Navigation Animation
+Frontend - Appearance & UX,UI Components,Header/Navbar (Desktop & Mobile)
+Frontend - Appearance & UX,UI Components,Footer
+Frontend - Appearance & UX,UI Components,Container
+Frontend - Appearance & UX,UI Components,Button
+Frontend - Appearance & UX,UI Components,Heading
+Frontend - Appearance & UX,UI Components,Subheading
+Frontend - Appearance & UX,UI Components,Modal
+Frontend - Appearance & UX,UI Components,Tooltip
+Frontend - Appearance & UX,UI Components,Animated Modal
+Frontend - Appearance & UX,UI Components,Canvas Reveal Effect
+Frontend - Appearance & UX,UI Components,Globe
+Frontend - Appearance & UX,UI Components,Sparkles
+Frontend - Appearance & UX,UI Components,Sticky Scroll
+Frontend - Appearance & UX,UI Components,Page Wrapper
+Frontend - Appearance & UX,UI Components,Direction Provider
+Frontend - Appearance & UX,UI Components,Blur Image
+Frontend - Appearance & UX,UI Components,Gradient Container
+Frontend - Appearance & UX,UI Components,Decorations (Ambient Color/Cover/Shooting Star/Star Background)
+Frontend - Appearance & UX,UI Components,Beam Effect
+Frontend - API Endpoints,Authentication API,NextAuth API Routes
+Frontend - API Endpoints,Authentication API,Logout API
+Frontend - API Endpoints,Authentication API,User API
+Frontend - API Endpoints,Contact API,Contact Form Submission
+Frontend - API Endpoints,Contact API,Contact Data Processing
+Frontend - API Endpoints,Newsletter API,Newsletter Subscription
+Frontend - API Endpoints,Newsletter API,Newsletter Data Processing
+Frontend - API Endpoints,Sitemap API,Sitemap Content Generation
+Frontend - API Endpoints,Sitemap API,Sitemap Recreation
+Frontend - API Endpoints,Sitemap API,Sitemap Testing
+Frontend - API Endpoints,Revalidation API,Cache Revalidation
+Frontend - API Endpoints,Revalidation API,ISR Revalidation
+Frontend - API Endpoints,Preview API,Preview Mode
+Frontend - API Endpoints,Preview API,Draft Content Preview
+Frontend - API Endpoints,Environment API,Environment Variables Testing
+Frontend - API Endpoints,Environment API,Environment Variables Debugging
+Frontend - API Endpoints,Language Config API,Language Configuration
+Frontend - API Endpoints,Language Config API,Language Settings
+Frontend - Strapi Integration,Enhanced Fetch,Strapi API Client
+Frontend - Strapi Integration,Enhanced Fetch,Data Transformation
+Frontend - Strapi Integration,Enhanced Fetch,Error Handling
+Frontend - Strapi Integration,Enhanced Fetch,Cache Management
+Frontend - Strapi Integration,Strapi Image,Image URL Generation
+Frontend - Strapi Integration,Strapi Image,Image Optimization
+Frontend - Strapi Integration,Strapi Image,Image CDN Support
+Frontend - Strapi Integration,Layout Data Fetching,Navbar Data
+Frontend - Strapi Integration,Layout Data Fetching,Footer Data
+Frontend - Strapi Integration,Layout Data Fetching,Global Settings
+Frontend - Strapi Integration,Content Fetching,Page Data
+Frontend - Strapi Integration,Content Fetching,Article Data
+Frontend - Strapi Integration,Content Fetching,Product Data
+Frontend - Strapi Integration,Content Fetching,FAQ Data
+Frontend - Strapi Integration,Content Fetching,Contact Data
+Deployment & DevOps - Server Installation & Environment Preparation,Node.js Version Management,Node.js 20.19.2 installation
+Deployment & DevOps - Server Installation & Environment Preparation,Node.js Version Management,NVM (Node Version Manager) setup
+Deployment & DevOps - Server Installation & Environment Preparation,Node.js Version Management,Node.js path configuration
+Deployment & DevOps - Server Installation & Environment Preparation,Node.js Version Management,Node.js version validation
+Deployment & DevOps - Server Installation & Environment Preparation,Project Directory Setup,Project directory structure
+Deployment & DevOps - Server Installation & Environment Preparation,Project Directory Setup,Directory permissions setup
+Deployment & DevOps - Server Installation & Environment Preparation,Project Directory Setup,Directory ownership configuration
+Deployment & DevOps - Server Installation & Environment Preparation,Project Directory Setup,Directory creation and validation
+Deployment & DevOps - Server Installation & Environment Preparation,Environment Variables Setup,Environment file creation (.env, .env.production)
+Deployment & DevOps - Server Installation & Environment Preparation,Environment Variables Setup,Environment variable validation
+Deployment & DevOps - Server Installation & Environment Preparation,Environment Variables Setup,Environment file copying (copy-env.mts)
+Deployment & DevOps - Server Installation & Environment Preparation,Environment Variables Setup,Environment variable security
+Deployment & DevOps - Server Installation & Environment Preparation,Environment Variables Setup,Environment file backup
+Deployment & DevOps - Server Installation & Environment Preparation,Dependencies Installation,Root project dependencies (yarn install)
+Deployment & DevOps - Server Installation & Environment Preparation,Dependencies Installation,Strapi dependencies installation
+Deployment & DevOps - Server Installation & Environment Preparation,Dependencies Installation,Next.js dependencies installation
+Deployment & DevOps - Server Installation & Environment Preparation,Dependencies Installation,Dependency version management
+Deployment & DevOps - Server Installation & Environment Preparation,Dependencies Installation,Dependency cleanup
+Deployment & DevOps - Web Server Configuration (Nginx),SSL/HTTPS Setup,Let's Encrypt SSL certificate configuration
+Deployment & DevOps - Web Server Configuration (Nginx),SSL/HTTPS Setup,SSL certificate paths (fullchain.pem, privkey.pem)
+Deployment & DevOps - Web Server Configuration (Nginx),SSL/HTTPS Setup,SSL session settings (timeout, cache)
+Deployment & DevOps - Web Server Configuration (Nginx),SSL/HTTPS Setup,TLS protocol configuration (TLSv1.2, TLSv1.3)
+Deployment & DevOps - Web Server Configuration (Nginx),SSL/HTTPS Setup,SSL cipher suite configuration
+Deployment & DevOps - Web Server Configuration (Nginx),SSL/HTTPS Setup,HSTS (HTTP Strict Transport Security) setup
+Deployment & DevOps - Web Server Configuration (Nginx),Reverse Proxy Configuration,Nginx reverse proxy setup
+Deployment & DevOps - Web Server Configuration (Nginx),Reverse Proxy Configuration,Backend proxy (Strapi on port 1337)
+Deployment & DevOps - Web Server Configuration (Nginx),Reverse Proxy Configuration,Frontend proxy (Next.js on port 3000)
+Deployment & DevOps - Web Server Configuration (Nginx),Reverse Proxy Configuration,Proxy headers configuration (Host, X-Real-IP, X-Forwarded-For, X-Forwarded-Proto)
+Deployment & DevOps - Web Server Configuration (Nginx),Reverse Proxy Configuration,Proxy buffer settings
+Deployment & DevOps - Web Server Configuration (Nginx),Reverse Proxy Configuration,Proxy timeout configurations
+Deployment & DevOps - Web Server Configuration (Nginx),Reverse Proxy Configuration,WebSocket support (Upgrade, Connection headers)
+Deployment & DevOps - Web Server Configuration (Nginx),Domain Configuration,Domain setup (vakav.ai, www.vakav.ai)
+Deployment & DevOps - Web Server Configuration (Nginx),Domain Configuration,Domain aliases configuration
+Deployment & DevOps - Web Server Configuration (Nginx),Domain Configuration,HTTP to HTTPS redirect (301)
+Deployment & DevOps - Web Server Configuration (Nginx),Domain Configuration,IPv4 and IPv6 support
+Deployment & DevOps - Web Server Configuration (Nginx),Domain Configuration,HTTP/2 support
+Deployment & DevOps - Web Server Configuration (Nginx),Static Asset Caching,Static asset caching (JS, CSS, images, fonts)
+Deployment & DevOps - Web Server Configuration (Nginx),Static Asset Caching,Cache expiration (1 year)
+Deployment & DevOps - Web Server Configuration (Nginx),Static Asset Caching,Cache-Control headers
+Deployment & DevOps - Web Server Configuration (Nginx),Static Asset Caching,Immutable cache configuration
+Deployment & DevOps - Web Server Configuration (Nginx),Static Asset Caching,Cache optimization
+Deployment & DevOps - Web Server Configuration (Nginx),Nginx Configuration Management,Nginx configuration file (vakav.ai.conf)
+Deployment & DevOps - Web Server Configuration (Nginx),Nginx Configuration Management,Nginx configuration testing (nginx -t)
+Deployment & DevOps - Web Server Configuration (Nginx),Nginx Configuration Management,Nginx configuration reload
+Deployment & DevOps - Web Server Configuration (Nginx),Nginx Configuration Management,Nginx service management
+Deployment & DevOps - Web Server Configuration (Nginx),Nginx Configuration Management,Nginx logging setup (access/error logs)
+Deployment & DevOps - Database Setup & Migrations,SQLite Database Setup,SQLite database creation
+Deployment & DevOps - Database Setup & Migrations,SQLite Database Setup,Database file permissions
+Deployment & DevOps - Database Setup & Migrations,SQLite Database Setup,Database directory setup
+Deployment & DevOps - Database Setup & Migrations,SQLite Database Setup,Database file ownership
+Deployment & DevOps - Database Setup & Migrations,SQLite Database Setup,Database initialization
+Deployment & DevOps - Database Setup & Migrations,Database Permissions,Database file permissions (664)
+Deployment & DevOps - Database Setup & Migrations,Database Permissions,Database directory permissions (755)
+Deployment & DevOps - Database Setup & Migrations,Database Permissions,Database ownership (administrator:administrator)
+Deployment & DevOps - Database Setup & Migrations,Database Permissions,Database permission fix script (fix-database-issue.sh)
+Deployment & DevOps - Database Setup & Migrations,Database Migrations,Database migration scripts
+Deployment & DevOps - Database Setup & Migrations,Database Migrations,Database schema updates
+Deployment & DevOps - Database Setup & Migrations,Database Migrations,Database data migration
+Deployment & DevOps - Database Setup & Migrations,Database Migrations,Migration rollback support
+Deployment & DevOps - Database Setup & Migrations,Database Backup,Database backup directory creation
+Deployment & DevOps - Database Setup & Migrations,Database Backup,Database backup automation
+Deployment & DevOps - Database Setup & Migrations,Database Backup,Database backup recovery
+Deployment & DevOps - Database Setup & Migrations,Database Backup,Database backup validation
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Main deployment script
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Service stopping (systemd)
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Dependency installation
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Strapi build process
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Next.js build process
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Environment file creation
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Backup directory creation
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Service starting (systemd)
+Deployment & DevOps - CI/CD Pipeline Scripts,Deployment Script (deploy.sh),Deployment status reporting
+Deployment & DevOps - CI/CD Pipeline Scripts,Service Setup Script (setup-services.sh),Systemd service installation
+Deployment & DevOps - CI/CD Pipeline Scripts,Service Setup Script (setup-services.sh),Nginx configuration update
+Deployment & DevOps - CI/CD Pipeline Scripts,Service Setup Script (setup-services.sh),Service enabling
+Deployment & DevOps - CI/CD Pipeline Scripts,Service Setup Script (setup-services.sh),Service dependency configuration
+Deployment & DevOps - CI/CD Pipeline Scripts,Service Setup Script (setup-services.sh),Directory creation
+Deployment & DevOps - CI/CD Pipeline Scripts,Service Setup Script (setup-services.sh),Permission setting
+Deployment & DevOps - CI/CD Pipeline Scripts,Service Setup Script (setup-services.sh),Service validation
+Deployment & DevOps - CI/CD Pipeline Scripts,Cleanup Script (cleanup-old-services.sh),Old service stopping
+Deployment & DevOps - CI/CD Pipeline Scripts,Cleanup Script (cleanup-old-services.sh),Old service disabling
+Deployment & DevOps - CI/CD Pipeline Scripts,Cleanup Script (cleanup-old-services.sh),Old service file removal
+Deployment & DevOps - CI/CD Pipeline Scripts,Cleanup Script (cleanup-old-services.sh),Old directory backup
+Deployment & DevOps - CI/CD Pipeline Scripts,Cleanup Script (cleanup-old-services.sh),Old file cleanup
+Deployment & DevOps - CI/CD Pipeline Scripts,Cleanup Script (cleanup-old-services.sh),Systemd daemon reload
+Deployment & DevOps - CI/CD Pipeline Scripts,Rsync to Server Script (01-rsync-to-server.sh),Local to remote server sync
+Deployment & DevOps - CI/CD Pipeline Scripts,Rsync to Server Script (01-rsync-to-server.sh),Rsync exclusion file (.rsync-exclude)
+Deployment & DevOps - CI/CD Pipeline Scripts,Rsync to Server Script (01-rsync-to-server.sh),SSH connection setup
+Deployment & DevOps - CI/CD Pipeline Scripts,Rsync to Server Script (01-rsync-to-server.sh),File synchronization
+Deployment & DevOps - CI/CD Pipeline Scripts,Rsync to Server Script (01-rsync-to-server.sh),Sync logging
+Deployment & DevOps - CI/CD Pipeline Scripts,Rsync to Server Script (01-rsync-to-server.sh),Sync status reporting
+Deployment & DevOps - CI/CD Pipeline Scripts,Environment File Copy Script (copy-env.mts),Environment file copying (.env.example to .env)
+Deployment & DevOps - CI/CD Pipeline Scripts,Environment File Copy Script (copy-env.mts),File existence validation
+Deployment & DevOps - CI/CD Pipeline Scripts,Environment File Copy Script (copy-env.mts),File copy error handling
+Deployment & DevOps - CI/CD Pipeline Scripts,Environment File Copy Script (copy-env.mts),File copy status reporting
+Deployment & DevOps - CI/CD Pipeline Scripts,Database Fix Script (fix-database-issue.sh),Database permission fixing
+Deployment & DevOps - CI/CD Pipeline Scripts,Database Fix Script (fix-database-issue.sh),Database directory creation
+Deployment & DevOps - CI/CD Pipeline Scripts,Database Fix Script (fix-database-issue.sh),Database file creation
+Deployment & DevOps - CI/CD Pipeline Scripts,Database Fix Script (fix-database-issue.sh),Database permission setting
+Deployment & DevOps - CI/CD Pipeline Scripts,Database Fix Script (fix-database-issue.sh),Database ownership setting
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Directory Creation,Backup directory structure
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Directory Creation,Backup directory naming (timestamp-based)
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Directory Creation,Backup directory permissions
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Directory Creation,Backup directory ownership
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Automation,Automated backup creation
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Automation,Backup of previous data
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Automation,Backup of old services
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Automation,Backup of old files
+Deployment & DevOps - Backup Scripts & Recovery Plan,Backup Automation,Backup validation
+Deployment & DevOps - Backup Scripts & Recovery Plan,Recovery Procedures,Backup restoration process
+Deployment & DevOps - Backup Scripts & Recovery Plan,Recovery Procedures,Data recovery procedures
+Deployment & DevOps - Backup Scripts & Recovery Plan,Recovery Procedures,Service recovery procedures
+Deployment & DevOps - Backup Scripts & Recovery Plan,Recovery Procedures,File recovery procedures
+Deployment & DevOps - Backup Scripts & Recovery Plan,Recovery Procedures,Recovery validation
+Deployment & DevOps - Monitoring/Logging Setup,Systemd Service Logs,Backend service logs (vakav-website-backend.service)
+Deployment & DevOps - Monitoring/Logging Setup,Systemd Service Logs,Frontend service logs (vakav-website-frontend.service)
+Deployment & DevOps - Monitoring/Logging Setup,Systemd Service Logs,Log output configuration (journal)
+Deployment & DevOps - Monitoring/Logging Setup,Systemd Service Logs,Log error configuration (journal)
+Deployment & DevOps - Monitoring/Logging Setup,Systemd Service Logs,Syslog identifier configuration
+Deployment & DevOps - Monitoring/Logging Setup,Systemd Service Logs,Log rotation
+Deployment & DevOps - Monitoring/Logging Setup,Nginx Logs,Nginx access logs
+Deployment & DevOps - Monitoring/Logging Setup,Nginx Logs,Nginx error logs
+Deployment & DevOps - Monitoring/Logging Setup,Nginx Logs,Log file configuration
+Deployment & DevOps - Monitoring/Logging Setup,Nginx Logs,Log rotation
+Deployment & DevOps - Monitoring/Logging Setup,Nginx Logs,Log analysis
+Deployment & DevOps - Monitoring/Logging Setup,Service Status Monitoring,Service status checking (systemctl status)
+Deployment & DevOps - Monitoring/Logging Setup,Service Status Monitoring,Service health monitoring
+Deployment & DevOps - Monitoring/Logging Setup,Service Status Monitoring,Service restart on failure
+Deployment & DevOps - Monitoring/Logging Setup,Service Status Monitoring,Service dependency monitoring
+Deployment & DevOps - Monitoring/Logging Setup,Service Status Monitoring,Service performance monitoring
+Deployment & DevOps - Monitoring/Logging Setup,Log Management,Log file location
+Deployment & DevOps - Monitoring/Logging Setup,Log Management,Log file permissions
+Deployment & DevOps - Monitoring/Logging Setup,Log Management,Log file rotation
+Deployment & DevOps - Monitoring/Logging Setup,Log Management,Log file cleanup
+Deployment & DevOps - Monitoring/Logging Setup,Log Management,Log file analysis
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Strapi CMS service configuration
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Service type (simple)
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Service user (administrator)
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Working directory configuration
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),ExecStart command
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Restart policy (on-failure)
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Restart delay (10 seconds)
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Environment variables (NODE_ENV, HOST, PORT)
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Security settings (NoNewPrivileges, PrivateTmp, ProtectSystem)
+Deployment & DevOps - Systemd Services,Backend Service (vakav-website-backend.service),Logging configuration
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Next.js service configuration
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Service type (simple)
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Service user (administrator)
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Working directory configuration
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),ExecStart command
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Restart policy (on-failure)
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Restart delay (10 seconds)
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Environment variables (NODE_ENV, PORT, HOSTNAME)
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Environment file (.env.production)
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Security settings (NoNewPrivileges, PrivateTmp, ProtectSystem)
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Logging configuration
+Deployment & DevOps - Systemd Services,Frontend Service (vakav-website-frontend.service),Service dependencies (vakav-website-backend.service)
+Deployment & DevOps - Systemd Services,Service Management,Service starting (systemctl start)
+Deployment & DevOps - Systemd Services,Service Management,Service stopping (systemctl stop)
+Deployment & DevOps - Systemd Services,Service Management,Service restarting (systemctl restart)
+Deployment & DevOps - Systemd Services,Service Management,Service enabling (systemctl enable)
+Deployment & DevOps - Systemd Services,Service Management,Service disabling (systemctl disable)
+Deployment & DevOps - Systemd Services,Service Management,Service status checking (systemctl status)
+Deployment & DevOps - Systemd Services,Service Management,Service reloading (systemctl daemon-reload)
+Deployment & DevOps - Security,SSL/TLS Configuration,SSL certificate setup
+Deployment & DevOps - Security,SSL/TLS Configuration,TLS protocol configuration
+Deployment & DevOps - Security,SSL/TLS Configuration,SSL cipher suite configuration
+Deployment & DevOps - Security,SSL/TLS Configuration,SSL session configuration
+Deployment & DevOps - Security,SSL/TLS Configuration,HSTS configuration
+Deployment & DevOps - Security,Security Headers,HSTS header (Strict-Transport-Security)
+Deployment & DevOps - Security,Security Headers,Security headers configuration
+Deployment & DevOps - Security,Security Headers,Header validation
+Deployment & DevOps - Security,Service Security Settings,NoNewPrivileges (systemd)
+Deployment & DevOps - Security,Service Security Settings,PrivateTmp (systemd)
+Deployment & DevOps - Security,Service Security Settings,ProtectSystem (systemd)
+Deployment & DevOps - Security,Service Security Settings,ReadWritePaths (systemd)
+Deployment & DevOps - Security,Service Security Settings,Service user isolation
+Deployment & DevOps - Security,Environment Variable Security,Environment variable encryption
+Deployment & DevOps - Security,Environment Variable Security,Environment variable validation
+Deployment & DevOps - Security,Environment Variable Security,Environment variable access control
+Deployment & DevOps - Security,Environment Variable Security,Environment variable backup
+Deployment & DevOps - Performance Optimization,Static Asset Caching,Static asset caching configuration
+Deployment & DevOps - Performance Optimization,Static Asset Caching,Cache expiration settings
+Deployment & DevOps - Performance Optimization,Static Asset Caching,Cache-Control headers
+Deployment & DevOps - Performance Optimization,Static Asset Caching,Immutable cache configuration
+Deployment & DevOps - Performance Optimization,Proxy Buffer Settings,Proxy buffer size configuration
+Deployment & DevOps - Performance Optimization,Proxy Buffer Settings,Proxy buffers configuration
+Deployment & DevOps - Performance Optimization,Proxy Buffer Settings,Proxy busy buffers configuration
+Deployment & DevOps - Performance Optimization,Proxy Buffer Settings,Proxy temp file write size configuration
+Deployment & DevOps - Performance Optimization,Timeout Configurations,Proxy connect timeout (60s)
+Deployment & DevOps - Performance Optimization,Timeout Configurations,Proxy send timeout (60s)
+Deployment & DevOps - Performance Optimization,Timeout Configurations,Proxy read timeout (60s)
+Deployment & DevOps - Performance Optimization,Timeout Configurations,Timeout optimization
+Deployment & DevOps - Performance Optimization,CDN Support (if applicable),CDN configuration
+Deployment & DevOps - Performance Optimization,CDN Support (if applicable),CDN asset delivery
+Deployment & DevOps - Performance Optimization,CDN Support (if applicable),CDN caching
+Deployment & DevOps - Performance Optimization,CDN Support (if applicable),CDN optimization
+
