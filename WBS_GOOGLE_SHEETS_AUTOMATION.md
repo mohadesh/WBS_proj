@@ -4,6 +4,7 @@
 
 این راهنما نحوه تبدیل فایل‌های تولید شده (`WBS_FEATURES_TABLE.csv` و `WBS_DSL_SYNTAX.txt`) به فرمت Master List در Google Sheets و اتوماسیون کامل روال کار را توضیح می‌دهد.
 
+
 ---
 
 ## 🔄 تبدیل داده‌ها به فرمت Master List
@@ -93,63 +94,161 @@ DSL: Product Features {Backend {Content Management {Article {CRUD, Categories}}}
 ```javascript
 /**
  * WBS Automation Script
- * تبدیل خودکار CSV یا DSL به Master List
+ * Converts CSV or DSL data into the Master List structure
+ * 
+ * Developed by Mohadeseh Erfani 
+ * Email: erfani.mohadeseh@gmail.com  
+ * Date: 2025-11-17
+ * Location: Mashhad, Iran
  */
 
-// ========== تنظیمات ==========
+// ========== Configuration ==========
 const CONFIG = {
-  // نام Sheet‌ها
+  // Sheet names
   SETTING_SHEET: 'Setting',
   MASTER_LIST_SHEET: 'Master List',
   
-  // ستون‌ها در Setting
-  DSL_COLUMN: 'D', // ستون WBS Full path
-  TAG_COLUMN: 'A', // ستون Tags
+  // Setting sheet columns
+  DSL_COLUMN: 'D', // WBS full path column
+  TAG_COLUMN: 'A', // Tag column
   
-  // ستون‌ها در Master List
-  TASK_COLUMN: 'B',
-  TAG_COLUMN: 'C',
-  WBS_GROUP_COLUMN: 'D',
-  PRIORITY_COLUMN: 'H',
-  STATUS_COLUMN: 'I',
+  // Master List columns
+  TASK_COLUMN: 'D', // Task starts at column D (D-V merged)
+  TAG_COLUMN: 'W', // Tag column
+  WBS_GROUP_COLUMN: 'X', // WBS Group column
+  START_DATE_COLUMN: 'Y', // Start Date column
+  DEADLINE_COLUMN: 'Z', // Deadline column
+  DAYS_LEFT_COLUMN: 'AA', // Days Left column
+  PRIORITY_COLUMN: 'AB', // Priority column
+  STATUS_COLUMN: 'AD', // Status column
+  PERSON_IN_CHARGE_COLUMN: 'AE', // Person In Charge column
+  NOTES_COLUMN: 'AF', // Notes column
+  SHOW_IN_PLANNER_COLUMN: 'AI', // Show in Planner column (checkbox)
   
-  // تنظیمات پیش‌فرض
+  // Default values
   DEFAULT_TAG: 'Vakav Website',
   DEFAULT_STATUS: 'To Do',
   DEFAULT_PRIORITY: '2. Medium',
   
-  // ردیف شروع داده‌ها (با در نظر گرفتن header)
-  HEADER_ROW: 28
+  // Data start row (header aware) - data starts from row after header
+  HEADER_ROW: 29
 };
 
-// ========== تابع اصلی: Import از CSV ==========
+// ========== Main Entry: Import from CSV ==========
 function importFromCSV() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const masterSheet = ss.getSheetByName(CONFIG.MASTER_LIST_SHEET);
+  if (!masterSheet) throw new Error('Sheet "Master List" not found!');
+
+  const csvData = readCSVFromFile();
+  const rows = Array.isArray(csvData) ? csvData : parseCSV(csvData);
+  if (!rows || rows.length === 0) throw new Error('No CSV data found.');
+
+  // Check if first row is header (contains 'Task', 'Tag', 'WBS Group', etc.)
+  const isMasterListFormat = rows[0] && (
+    rows[0].some(cell => String(cell).includes('Task')) ||
+    rows[0].some(cell => String(cell).includes('Tag')) ||
+    rows[0].some(cell => String(cell).includes('WBS Group'))
+  );
+
+  let masterRows;
+  let startRow;
   
-  if (!masterSheet) {
-    throw new Error('Sheet "Master List" not found!');
+  if (isMasterListFormat) {
+    // Already in Master List format - skip header row
+    masterRows = rows.slice(1).map(row => row.map(normalizeCsvCell));
+    startRow = CONFIG.HEADER_ROW + 1; // Data starts from row after header
+  } else {
+    // Convert from Features Table format
+    const dataRows = rows.slice(1); // Skip header
+    masterRows = convertCSVToMasterList(dataRows);
+    startRow = CONFIG.HEADER_ROW + 1; // Data starts from row after header
   }
   
-  // CSV را از یک cell یا file بخوان
-  // برای تست، می‌توانی CSV را در یک cell قرار دهی
-  const csvData = readCSVFromFile(); // یا readCSVFromCell()
+  if (!masterRows || masterRows.length === 0) throw new Error('No data rows found.');
   
-  // تبدیل CSV به rows
-  const rows = parseCSV(csvData);
+  const numRows = masterRows.length;
+  const numCols = masterRows[0].length;
+
+  // Insert data starting from column B (column 2)
+  masterSheet.getRange(startRow, 2, numRows, numCols).setValues(masterRows);
+
+  // Column indices in masterRows array (0-based):
+  // 0: ✔ (empty), 1: Check Task (FALSE), 2-20: Task (D-V merged), 21: Tag, 22: WBS Group, 23: Start Date, 24: Deadline, 25: Days Left, 26: Priority, etc.
+
+  // Merge and set checkbox for columns B and C (merged checkbox)
+  const checkACol = 2; // Column B in sheet (index 0 in array)
+  for (let i = 0; i < numRows; i++) {
+    const row = startRow + i;
+    // Merge B and C (columns 2 and 3 in sheet)
+    masterSheet.getRange(row, checkACol, 1, 2).merge();
+    // Clear and insert checkbox
+    masterSheet.getRange(row, checkACol).clearContent();
+    masterSheet.getRange(row, checkACol).insertCheckboxes();
+    // Set checkbox value from CSV (row[1] is Check Task column which has 'FALSE')
+    const checkValue = masterRows[i][1] === true || masterRows[i][1] === 'TRUE';
+    masterSheet.getRange(row, checkACol).setValue(checkValue);
+  }
+
+  // Merge columns D to V for Task column (columns 4-22 in sheet, indices 2-20 in array)
+  const taskStartCol = 4; // Column D in sheet (index 2 in array)
+  const taskEndCol = 22; // Column V in sheet (index 20 in array)
+  for (let i = 0; i < numRows; i++) {
+    const row = startRow + i;
+    masterSheet.getRange(row, taskStartCol, 1, taskEndCol - taskStartCol + 1).merge();
+  }
+
+  // Find column indices for dates and other fields
+  // In array: index 23 = Start Date (column Y), index 24 = Deadline (column Z)
+  const startDateArrayIndex = 23; // Start Date in array
+  const deadlineArrayIndex = 24; // Deadline in array
+  const startDateCol = getColumnIndex(CONFIG.START_DATE_COLUMN); // Column Y
+  const deadlineCol = getColumnIndex(CONFIG.DEADLINE_COLUMN); // Column Z
   
-  // تبدیل به فرمت Master List
-  const masterRows = convertCSVToMasterList(rows);
+  // Convert date strings (YYYY/MM/DD) to Date objects and set
+  for (let i = 0; i < numRows; i++) {
+    const row = startRow + i;
+    // Start Date
+    const startDateStr = masterRows[i][startDateArrayIndex];
+    if (startDateStr && typeof startDateStr === 'string' && /^\d{4}\/\d{2}\/\d{2}$/.test(startDateStr)) {
+      const parts = startDateStr.split('/');
+      masterSheet.getRange(row, startDateCol).setValue(new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2])));
+    }
+    // Deadline
+    const deadlineStr = masterRows[i][deadlineArrayIndex];
+    if (deadlineStr && typeof deadlineStr === 'string' && /^\d{4}\/\d{2}\/\d{2}$/.test(deadlineStr)) {
+      const parts = deadlineStr.split('/');
+      masterSheet.getRange(row, deadlineCol).setValue(new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2])));
+    }
+  }
   
-  // اضافه کردن به Master List
-  const startRow = findLastRow(masterSheet, CONFIG.HEADER_ROW) + 1;
-  masterSheet.getRange(startRow, 2, masterRows.length, masterRows[0].length)
-    .setValues(masterRows);
-  
+  // Apply date format
+  masterSheet.getRange(startRow, startDateCol, numRows, 1).setNumberFormat('yyyy/mm/dd');
+  masterSheet.getRange(startRow, deadlineCol, numRows, 1).setNumberFormat('yyyy/mm/dd');
+
+  // Days Left column: dynamic formula per row
+  const daysLeftCol = getColumnIndex(CONFIG.DAYS_LEFT_COLUMN);
+  for (let i = 0; i < numRows; i++) {
+    const row = startRow + i;
+    masterSheet.getRange(row, daysLeftCol).setFormula(
+      `=IF(AND(${CONFIG.START_DATE_COLUMN}${row}<>"",${CONFIG.DEADLINE_COLUMN}${row}<>""),${CONFIG.DEADLINE_COLUMN}${row}-TODAY(),"")`
+    ).setNumberFormat('0');
+  }
+
+  // Show in Planner column (AI) - last column in array - checkbox
+  const showPlannerCol = getColumnIndex(CONFIG.SHOW_IN_PLANNER_COLUMN);
+  const showPlannerArrayIndex = numCols - 1; // Last column
+  masterSheet.getRange(startRow, showPlannerCol, numRows, 1).clearContent().insertCheckboxes();
+  const showPlannerValues = masterRows.map(row => {
+    const val = row[showPlannerArrayIndex];
+    return [val === true || val === 'TRUE'];
+  });
+  masterSheet.getRange(startRow, showPlannerCol, numRows, 1).setValues(showPlannerValues);
+
   SpreadsheetApp.getUi().alert(`✅ ${masterRows.length} rows imported successfully!`);
 }
 
-// ========== تابع اصلی: Import از DSL ==========
+// ========== Main Entry: Import from DSL ==========
 function importFromDSL() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const settingSheet = ss.getSheetByName(CONFIG.SETTING_SHEET);
@@ -159,7 +258,7 @@ function importFromDSL() {
     throw new Error('Required sheets not found!');
   }
   
-  // خواندن DSL از Setting sheet
+  // Locate DSL string in Setting sheet
   const tagRow = findTagRow(settingSheet, CONFIG.DEFAULT_TAG);
   if (!tagRow) {
     throw new Error(`Tag "${CONFIG.DEFAULT_TAG}" not found in Setting sheet!`);
@@ -174,7 +273,7 @@ function importFromDSL() {
   // Parse DSL
   const tasks = parseDSL(dslString, CONFIG.DEFAULT_TAG);
   
-  // اضافه کردن به Master List
+  // Append to Master List
   const startRow = findLastRow(masterSheet, CONFIG.HEADER_ROW) + 1;
   masterSheet.getRange(startRow, 2, tasks.length, tasks[0].length)
     .setValues(tasks);
@@ -185,7 +284,7 @@ function importFromDSL() {
 // ========== Parse DSL Syntax ==========
 function parseDSL(dslString, tag) {
   const tasks = [];
-  const stack = []; // برای track کردن parent levels
+  const stack = []; // Not used currently, placeholder for future parent tracking
   
   // Helper: extract name from a node
   function extractName(node) {
@@ -209,23 +308,23 @@ function parseDSL(dslString, tag) {
     const currentPath = parentPath ? `${parentPath} > ${name}` : name;
     
     if (children) {
-      // این node بچه‌هایی دارد
+      // Node has children → recurse
       const childrenList = parseChildrenList(children);
       
       for (const child of childrenList) {
         if (child.includes('{')) {
-          // این child خودش parent است
+          // Nested parent
           parseNode(child, currentPath);
         } else {
-          // این child یک leaf (task) است
+          // Leaf node (task)
           tasks.push([
             false, // checkbox
-            child.trim(), // task
+            child.trim(), // task name
             tag, // tag
             currentPath, // WBS group
             '', // start date
             '', // deadline
-            '', // days left (formula)
+            '', // days left (formula placeholder)
             CONFIG.DEFAULT_PRIORITY, // priority
             CONFIG.DEFAULT_STATUS, // status
             '', // person in charge
@@ -234,7 +333,7 @@ function parseDSL(dslString, tag) {
         }
       }
     } else {
-      // این node خودش یک task است (leaf)
+      // Node itself is a task (leaf)
       tasks.push([
         false,
         name,
@@ -251,7 +350,7 @@ function parseDSL(dslString, tag) {
     }
   }
   
-  // Parse children list (separated by comma, but respecting nested braces)
+  // Parse children list (comma separated while respecting nested braces)
   function parseChildrenList(childrenStr) {
     const items = [];
     let current = '';
@@ -292,36 +391,50 @@ function parseDSL(dslString, tag) {
 
 // ========== Convert CSV to Master List ==========
 function convertCSVToMasterList(csvRows) {
-  const masterRows = [];
+  if (!csvRows || csvRows.length === 0) {
+    return [];
+  }
   
-  for (let i = 1; i < csvRows.length; i++) { // Skip header
+  const header = csvRows[0].map(cell => (cell || '').toString().trim());
+  const looksLikeMasterList = header.includes('Tag') && header.includes('WBS Group') && header.includes('Start Date');
+  
+  if (looksLikeMasterList) {
+    const dataRows = csvRows
+      .slice(1)
+      .filter(row => row && row.some(cell => cell !== '' && cell !== null))
+      .map(row => row.map(normalizeCsvCell));
+    return dataRows;
+  }
+  
+  const masterRows = [];
+  for (let i = 1; i < csvRows.length; i++) {
     const row = csvRows[i];
+    if (!row || row.length === 0) continue;
+    
     const featureGroup = row[0] || '';
     const feature = row[1] || '';
     const subFeature = row[2] || '';
-    
-    // تعیین Task
     const task = subFeature || feature;
     
-    // تعیین WBS Group
+    if (!task) continue;
+    
     let wbsGroup = featureGroup;
     if (feature && feature !== task) {
       wbsGroup = `${featureGroup} > ${feature}`;
     }
     
-    // ساخت row
     masterRows.push([
-      false, // checkbox
-      task, // task
-      CONFIG.DEFAULT_TAG, // tag
-      wbsGroup, // WBS group
-      '', // start date
-      '', // deadline
-      '', // days left (will be formula)
-      CONFIG.DEFAULT_PRIORITY, // priority
-      CONFIG.DEFAULT_STATUS, // status
-      '', // person in charge
-      '' // notes
+      false,
+      task,
+      CONFIG.DEFAULT_TAG,
+      wbsGroup,
+      '',
+      '',
+      '',
+      CONFIG.DEFAULT_PRIORITY,
+      CONFIG.DEFAULT_STATUS,
+      '',
+      ''
     ]);
   }
   
@@ -372,15 +485,30 @@ function parseCSV(csvString) {
 }
 
 function readCSVFromFile() {
-  // این تابع باید CSV را از یک file بخواند
-  // می‌توانی از DriveApp یا File Upload استفاده کنی
-  // برای تست، CSV را در یک cell قرار بده
-  return '';
+  const SHEET_NAME = 'CSV Import';
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME);
+  
+  if (!sheet) {
+    throw new Error(`Sheet "${SHEET_NAME}" not found!`);
+  }
+  
+  const values = sheet.getDataRange().getDisplayValues();
+  return values;
+}
+
+function normalizeCsvCell(cell) {
+  if (typeof cell === 'boolean') return cell;
+  if (cell === null || cell === undefined) return '';
+  const text = cell.toString().trim();
+  if (text.toUpperCase() === 'TRUE') return true;
+  if (text.toUpperCase() === 'FALSE') return false;
+  return text;
 }
 
 // ========== Bulk Update Functions ==========
 
-// تغییر دسته‌ای Priority
+// Bulk update priority
 function bulkUpdatePriority(wbsGroupPattern, newPriority) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const masterSheet = ss.getSheetByName(CONFIG.MASTER_LIST_SHEET);
@@ -405,7 +533,7 @@ function bulkUpdatePriority(wbsGroupPattern, newPriority) {
   SpreadsheetApp.getUi().alert(`✅ Updated ${updated} rows!`);
 }
 
-// تغییر دسته‌ای Status
+// Bulk update status
 function bulkUpdateStatus(wbsGroupPattern, newStatus) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const masterSheet = ss.getSheetByName(CONFIG.MASTER_LIST_SHEET);
@@ -430,7 +558,7 @@ function bulkUpdateStatus(wbsGroupPattern, newStatus) {
   SpreadsheetApp.getUi().alert(`✅ Updated ${updated} rows!`);
 }
 
-// تغییر دسته‌ای Person In Charge
+// Bulk update person in charge
 function bulkUpdatePerson(wbsGroupPattern, newPerson) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const masterSheet = ss.getSheetByName(CONFIG.MASTER_LIST_SHEET);
@@ -458,6 +586,14 @@ function bulkUpdatePerson(wbsGroupPattern, newPerson) {
 // ========== Menu Setup ==========
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
+  
+  // Create legacy WBS menu
+  ui.createMenu('WBS')
+    .addItem('Build/Refresh', 'wbsBuild')
+    .addItem('Apply validations', 'wbsApplyValidations')
+    .addToUi();
+  
+  // Create WBS Automation menu
   ui.createMenu('WBS Automation')
     .addItem('📥 Import from DSL', 'importFromDSL')
     .addItem('📥 Import from CSV', 'importFromCSV')

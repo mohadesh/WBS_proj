@@ -21,14 +21,46 @@ const CONFIG = {
   defaultPriority: '2. Medium',
   defaultPerson: '',
   defaultNotes: '',
-  headerRow: 28,
+  headerRow: 29,
   schedule: {
     enabled: true,
     startDate: '2025-07-20',
     endDate: '2025-11-10',
     minGroupDays: 3
+  },
+  layout: {
+    checkboxColumns: 2,         // Columns A-B (merged visually; only the second hosts the checkbox)
+    taskMergedColumns: 19,      // D through V
+    priorityColumns: 2,         // AB, AC
+    notesColumns: 2             // AF, AG
   }
 };
+
+const PERSON_RULES = [
+  { pattern: /(deployment|devops|infrastructure|server|systemd|security|performance optimization|ci\/cd|backup|monitoring|logging|nginx|database|environment|systemd|service)/i, teams: ['DevOps Team'] },
+  { pattern: /(backend|strapi|site configuration|strapi plugins|shared components|dynamic zone|api endpoint|contact card|global|content releases|users permissions|review workflows|upload media)/i, teams: ['Backend Team'] },
+  { pattern: /(frontend|user & interaction|seo & analytics|admin system|newsletter|contact form|qr code|sitemap|cache|cache control|cache test|revalidation|preview)/i, teams: ['Frontend Team'] },
+  { pattern: /(appearance|ux|ui components|language switcher|responsive design|custom 404|scroll|smooth navigation|animations)/i, teams: ['UI/UX Team'] },
+  { pattern: /(content project|content & pages|blog|documentation|product content|faq content|contact content|testimonial|page content|global content|translations|docs)/i, teams: ['Content Team'] },
+  { pattern: /(project owner|management)/i, teams: ['Project Owner'] }
+];
+
+const NOTE_RULES = [
+  { pattern: /(seo|structured data|open graph|json-ld|meta)/i, note: 'Align SEO metadata with analytics & content strategy.' },
+  { pattern: /sitemap/i, note: 'Auto-refresh sitemap and submit to search consoles.' },
+  { pattern: /google analytics|ga4/i, note: 'Validate GA4 tracking + consent banner.' },
+  { pattern: /newsletter/i, note: 'Connect mailing provider and double opt-in.' },
+  { pattern: /contact form/i, note: 'Ensure backend delivery + spam protection.' },
+  { pattern: /qr code/i, note: 'Provide downloadable vCard QR for cards.' },
+  { pattern: /cache/i, note: 'Coordinate cache purge, revalidation, and monitoring.' },
+  { pattern: /deployment|ci\/cd|rsync/i, note: 'Follow deployment script & backup checklist.' },
+  { pattern: /backup/i, note: 'Keep restore steps verified before releases.' },
+  { pattern: /monitoring|logging/i, note: 'Configure log retention and alerts.' },
+  { pattern: /systemd/i, note: 'Update systemd units and restart policy.' },
+  { pattern: /environment/i, note: 'Sync .env secrets across environments.' },
+  { pattern: /global content|translations/i, note: 'Review locale coverage and translations.' },
+  { pattern: /responsive|ux|ui components/i, note: 'Review experience on key breakpoints.' }
+];
 
 // Read CSV file
 function readCSV(filePath) {
@@ -74,19 +106,26 @@ function parseCSVLine(line) {
 function convertToMasterList(csvData, scheduleMap) {
   const masterRows = [];
   
-  // Header for Master List
+  const taskSpacerHeaders = Array.from({ length: Math.max(CONFIG.layout.taskMergedColumns - 1, 0) }, () => '');
+  const prioritySpacerHeaders = Array.from({ length: Math.max(CONFIG.layout.priorityColumns - 1, 0) }, () => '');
+  const notesSpacerHeaders = Array.from({ length: Math.max(CONFIG.layout.notesColumns - 1, 0) }, () => '');
   const masterHeaders = [
-    'Checkbox',
+    '✔',
+    'Check Task',
     'Task',
+    ...taskSpacerHeaders,
     'Tag',
     'WBS Group',
     'Start Date',
     'Deadline',
     'Days Left',
     'Priority',
+    ...prioritySpacerHeaders,
     'Status',
     'Person In Charge',
-    'Notes'
+    'Notes',
+    ...notesSpacerHeaders,
+    'Show in Planner'
   ];
   
   // Convert each CSV row
@@ -109,20 +148,45 @@ function convertToMasterList(csvData, scheduleMap) {
     const startDate = schedule ? formatDate(schedule.start) : '';
     const deadline = schedule ? formatDate(schedule.end) : '';
     
-    // Build Master List row
-    masterRows.push([
-      'FALSE', // Checkbox (FALSE for unchecked)
-      task,
-      CONFIG.defaultTag,
-      wbsGroup,
-      startDate,
-      deadline,
-      '', // Days Left (formula, will be calculated in Google Sheets)
-      CONFIG.defaultPriority,
-      CONFIG.defaultStatus,
-      CONFIG.defaultPerson,
-      CONFIG.defaultNotes
-    ]);
+    const rowValues = [];
+    const sheetRow = CONFIG.headerRow + 1 + masterRows.length;
+    const startDateColumnLetter = getColumnLetter(masterHeaders.indexOf('Start Date') + 1);
+    const deadlineColumnLetter = getColumnLetter(masterHeaders.indexOf('Deadline') + 1);
+    
+    // Checkbox columns (B, C): B is empty (for merge), C has FALSE for checkbox
+    // Column B (✔) - empty string for merge
+    rowValues.push('');
+    // Column C (Check Task) - 'FALSE' string for checkbox
+    rowValues.push('FALSE');
+    
+    // Task column (D) + spacers until column V
+    rowValues.push(task);
+    const taskSpacerCount = Math.max(CONFIG.layout.taskMergedColumns - 1, 0);
+    for (let i = 0; i < taskSpacerCount; i++) {
+      rowValues.push('');
+    }
+    
+    // Remaining columns
+    rowValues.push(CONFIG.defaultTag);
+    rowValues.push(wbsGroup);
+    rowValues.push(startDate);
+    rowValues.push(deadline);
+    const daysLeftFormula = `=IF(AND(${startDateColumnLetter}${sheetRow}<>"",${deadlineColumnLetter}${sheetRow}<>""),${deadlineColumnLetter}${sheetRow}-${startDateColumnLetter}${sheetRow},"")`;
+    rowValues.push(daysLeftFormula);
+    rowValues.push(CONFIG.defaultPriority);
+    for (let i = 0; i < Math.max(CONFIG.layout.priorityColumns - 1, 0); i++) {
+      rowValues.push('');
+    }
+    rowValues.push(CONFIG.defaultStatus);
+    rowValues.push(determinePersonInCharge(featureGroup, feature));
+    rowValues.push(determineNotes(featureGroup, feature, subFeature));
+    for (let i = 0; i < Math.max(CONFIG.layout.notesColumns - 1, 0); i++) {
+      rowValues.push('');
+    }
+    // Show in Planner column (checkbox) - must be string for Google Sheets
+    rowValues.push('FALSE');
+    
+    masterRows.push(rowValues);
   }
   
   return { headers: masterHeaders, rows: masterRows };
@@ -135,14 +199,22 @@ function writeCSV(filePath, data) {
   // Header
   lines.push(data.headers.join(','));
   
-  // Rows
+  // Rows (skip header row - data starts from row after header)
   for (const row of data.rows) {
     // Escape values that contain comma or quotes
     const escapedRow = row.map(cell => {
-      if (cell.includes(',') || cell.includes('"') || cell.includes('\n')) {
-        return `"${cell.replace(/"/g, '""')}"`;
+      let val = cell;
+      // Convert boolean to string
+      if (typeof cell === 'boolean') val = cell ? 'TRUE' : 'FALSE';
+      // Handle empty strings, null, undefined
+      if (val === null || val === undefined) val = '';
+      // Convert to string if needed
+      if (typeof val !== 'string') val = String(val);
+      // Escape if contains comma, quotes, or newlines
+      if (val.includes(',') || val.includes('"') || val.includes('\n')) {
+        return `"${val.replace(/"/g, '""')}"`;
       }
-      return cell;
+      return val;
     });
     lines.push(escapedRow.join(','));
   }
@@ -313,10 +385,48 @@ function addDays(date, days) {
 }
 
 function formatDate(date) {
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
   const year = date.getFullYear();
-  return `${month}/${day}/${year}`;
+  return `${year}/${month}/${day}`;
+}
+
+function getColumnLetter(columnNumber) {
+  let letter = '';
+  let num = columnNumber;
+  while (num > 0) {
+    const remainder = (num - 1) % 26;
+    letter = String.fromCharCode(65 + remainder) + letter;
+    num = Math.floor((num - 1) / 26);
+  }
+  return letter;
+}
+
+function determinePersonInCharge(featureGroup, feature) {
+  const text = `${featureGroup} ${feature}`.toLowerCase();
+  const teams = new Set();
+  
+  for (const rule of PERSON_RULES) {
+    if (rule.pattern.test(text)) {
+      rule.teams.forEach(team => teams.add(team));
+    }
+  }
+  
+  if (teams.size === 0) {
+    teams.add('Project Owner');
+  }
+  
+  return Array.from(teams).join(', ');
+}
+
+function determineNotes(featureGroup, feature, subFeature) {
+  const text = `${featureGroup} ${feature} ${subFeature || ''}`.toLowerCase();
+  for (const rule of NOTE_RULES) {
+    if (rule.pattern.test(text)) {
+      return rule.note;
+    }
+  }
+  return CONFIG.defaultNotes || '';
 }
 
 // Run if executed directly
